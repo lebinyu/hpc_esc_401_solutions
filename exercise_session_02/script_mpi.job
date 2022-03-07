@@ -1,0 +1,19 @@
+#!/bin/bash -l
+#SBATCH --account=uzh8
+#SBATCH --job-name="ex02_mpi"
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=lebin.yu@uzh.ch
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-core=1
+#SBATCH --ntasks-per-node=36
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=debug
+#SBATCH --constraint=mc
+#SBATCH --hint=nomultithread
+#SBATCH --error=errors_mpi.log
+#SBATCH --output=ouput_mpi.log
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+srun cpi_mpi
